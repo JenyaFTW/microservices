@@ -1,7 +1,14 @@
-FROM openjdk:14
+FROM maven:3.8.6-openjdk-18 AS builder
 
-COPY target/warehouse-srevice-0.0.1-SNAPSHOT.jar app.jar
-EXPOSE 8080:80
+ADD ./pom.xml pom.xml
+ADD ./src src/
 
+RUN mvn clean package
 
-CMD ["java", "-jar", "app.jar"]
+FROM openjdk:18
+
+COPY --from=builder target/warehouse-srevice-0.0.1-SNAPSHOT.jar warehouse.jar
+
+EXPOSE 8080:8080
+
+CMD ["java", "-jar", "warehouse.jar"]
