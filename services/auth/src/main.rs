@@ -3,6 +3,8 @@ use dotenv::dotenv;
 use std::net::{SocketAddr, ToSocketAddrs};
 
 pub mod routes;
+pub mod handlers;
+pub mod models;
 
 #[tokio::main]
 async fn main() {
