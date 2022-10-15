@@ -1,6 +1,7 @@
 use std::env;
 use dotenv::dotenv;
 use std::net::{SocketAddr, ToSocketAddrs};
+use axum::Router;
 
 pub mod routes;
 pub mod handlers;
@@ -16,7 +17,7 @@ async fn main() {
 
     println!("Listening on {}:{}", listen_host, listen_port);
     axum::Server::bind(&format!("{listen_host}:{listen_port}").parse::<SocketAddr>().unwrap())
-        .serve(routes.into_make_service())
+        .serve(Router::new().nest("/api/auth", routes).into_make_service())
         .await
         .unwrap()
 }
