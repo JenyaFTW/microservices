@@ -16,12 +16,12 @@ public class customer_controller {
     @Autowired
     private customer_service CustomService = new customer_service();
 
-    @RequestMapping("/customer")
+    @RequestMapping("/api/customer")
     public List<customer> getAllOrders() {
         return CustomService.getCustomers();
     }
 
-    @RequestMapping("/customer/id={clientId}")
+    @RequestMapping("/api/customer/{clientId}")
     public customer getCustomerById(@PathVariable long clientId) {
         return CustomService.getCustomerById(clientId);
     }
