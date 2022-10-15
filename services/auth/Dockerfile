@@ -7,4 +7,6 @@ RUN apk add --no-cache musl-dev
 
 RUN cargo install --path .
 
+EXPOSE 3000
+
 CMD ["auth"]
