@@ -9,6 +9,6 @@ FROM openjdk:18
 
 COPY --from=builder target/warehouse-srevice-0.0.1-SNAPSHOT.jar warehouse.jar
 
-EXPOSE 8080:8080
+EXPOSE 8081:8080
 
 CMD ["java", "-jar", "warehouse.jar"]
