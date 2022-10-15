@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/orders")
+@RequestMapping("/api/orders")
 public class OrderController {
 
     private OrderService orderService;
@@ -30,7 +30,7 @@ public class OrderController {
         return orderService.getOrderById(orderId);
     }
 
-    @GetMapping("/")
+    @GetMapping()
     @ResponseBody
     public List<Order> getAllOrders() {
         return orderService.getAllOrders();
