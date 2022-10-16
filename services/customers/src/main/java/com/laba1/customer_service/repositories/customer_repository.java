@@ -24,7 +24,7 @@ public class customer_repository {
 
     public customer getCustomerById(long id) {
         for (customer s : customers) {
-            if (s.getClientId() == id) {
+            if (s.getId() == id) {
                 return s;
             }
         }
