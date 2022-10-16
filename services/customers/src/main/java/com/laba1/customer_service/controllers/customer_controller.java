@@ -17,7 +17,7 @@ public class customer_controller {
     private customer_service CustomService = new customer_service();
 
     @RequestMapping("/api/customers")
-    public List<customer> getAllOrders() {
+    public List<customer> getAllCustomers() {
         return CustomService.getCustomers();
     }
 
