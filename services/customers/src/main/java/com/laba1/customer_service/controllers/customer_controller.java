@@ -21,9 +21,9 @@ public class customer_controller {
         return CustomService.getCustomers();
     }
 
-    @RequestMapping("/api/customers/{clientId}")
-    public customer getCustomerById(@PathVariable long clientId) {
-        return CustomService.getCustomerById(clientId);
+    @RequestMapping("/api/customer/{id}")
+    public customer getCustomerById(@PathVariable long id) {
+        return CustomService.getCustomerById(id);
     }
 }
 
