@@ -3,7 +3,7 @@
 ## Team (#4):
 - Яковлєв Євген ([Auth Service](https://github.com/JenyaFTW/microservices-1/tree/main/services/auth), [k8s](https://github.com/JenyaFTW/microservices-1/tree/main/k8s/auth), [Docker Image](https://hub.docker.com/layers/neura/auth-service/1/images/sha256-768b75b9ba44314871159216115c1a4808c99e5a8f927bc0dcc6b013f41a91a6?context=repo))
 - Коваль Максим ([Warehouse Service](https://github.com/JenyaFTW/microservices-1/tree/main/services/warehouse), [k8s](https://github.com/JenyaFTW/microservices-1/tree/main/k8s/warehouse), [Docker Image]())
-- Самохатня Міліна ([Orders Service](https://github.com/JenyaFTW/microservices-1/tree/main/services/orders), [k8s](https://github.com/JenyaFTW/microservices-1/tree/main/k8s/orders), [Docker Image](https://hub.docker.com/layers/milinass/order-service/latest/images/sha256-d98af88d629c362063968674d2d936f3132b037dfa77315ee2b93e04bae04ae0?context=repo))
+- Самохатня Міліна ([Orders Service](https://github.com/JenyaFTW/microservices-1/tree/main/services/orders), [k8s](https://github.com/JenyaFTW/microservices-1/tree/main/k8s/orders), [Docker Image]https://hub.docker.com/layers/milinass/order-service/1/images/sha256-d98af88d629c362063968674d2d936f3132b037dfa77315ee2b93e04bae04ae0?context=repo))
 - Помазан Нікіта ([Customers Service](https://github.com/JenyaFTW/microservices-1/tree/main/services/customers), [k8s](https://github.com/JenyaFTW/microservices-1/tree/main/k8s/customers), [Docker Image]())
 
 [Client](https://github.com/JenyaFTW/microservices-1/tree/main/client), [Client k8s](https://github.com/JenyaFTW/microservices-1/tree/main/k8s/client)
