@@ -4,7 +4,7 @@
 - Яковлєв Євген ([Auth Service](https://github.com/JenyaFTW/microservices-1/tree/main/services/auth), [k8s](https://github.com/JenyaFTW/microservices-1/tree/main/k8s/auth), [Docker Image](https://hub.docker.com/layers/neura/auth-service/1/images/sha256-768b75b9ba44314871159216115c1a4808c99e5a8f927bc0dcc6b013f41a91a6?context=repo))
 - Коваль Максим ([Warehouse Service](https://github.com/JenyaFTW/microservices-1/tree/main/services/warehouse), [k8s](https://github.com/JenyaFTW/microservices-1/tree/main/k8s/warehouse), [Docker Image]())
 - Самохатня Міліна ([Orders Service](https://github.com/JenyaFTW/microservices-1/tree/main/services/orders), [k8s](https://github.com/JenyaFTW/microservices-1/tree/main/k8s/orders), [Docker Image](https://hub.docker.com/layers/milinass/order-service/1/images/sha256-d98af88d629c362063968674d2d936f3132b037dfa77315ee2b93e04bae04ae0?context=repo))
-- Помазан Нікіта ([Customers Service](https://github.com/JenyaFTW/microservices-1/tree/main/services/customers), [k8s](https://github.com/JenyaFTW/microservices-1/tree/main/k8s/customers), [Docker Image]())
+- Помазан Нікіта ([Customers Service](https://github.com/JenyaFTW/microservices-1/tree/main/services/customers), [k8s](https://github.com/JenyaFTW/microservices-1/tree/main/k8s/customers), [Docker Image](https://hub.docker.com/layers/pomazzanus/customer-docker/latest/images/sha256-7ef44f070c78a5263a031dc46a773ada0741dff85e05fd98954e9b87f8e9b8e2?context=repo))
 
 [Client](https://github.com/JenyaFTW/microservices-1/tree/main/client), [Client k8s](https://github.com/JenyaFTW/microservices-1/tree/main/k8s/client)
 
