@@ -3,24 +3,18 @@ package com.microservices.orderservice.controller;
 import com.microservices.orderservice.entity.Order;
 import com.microservices.orderservice.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/api/orders")
 public class OrderController {
 
-    private OrderService orderService;
-
-    public OrderService getOrderService() {
-        return orderService;
-    }
+    private final OrderService orderService;
 
     @Autowired
-    public void setOrderService(OrderService orderService) {
+    public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
 
@@ -34,6 +28,22 @@ public class OrderController {
     @ResponseBody
     public List<Order> getAllOrders() {
         return orderService.getAllOrders();
+    }
+
+    @PostMapping()
+    public void createOrder (@RequestBody Order order) {
+        orderService.addOrder(order);
+    }
+
+    @DeleteMapping("/{orderId}")
+    public void deleteOrder (@PathVariable Long orderId) {
+        orderService.deleteOrder(orderId);
+    }
+
+    @PutMapping("/{orderId}")
+    public void updateOrder (@RequestBody Order order, @PathVariable Long orderId) {
+        if (order.getId() == null) order.setId(orderId);
+        orderService.updateOrder(order);
     }
 
 }
