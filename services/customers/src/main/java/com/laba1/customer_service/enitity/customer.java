@@ -1,60 +1,73 @@
 package com.laba1.customer_service.enitity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "customers")
 public class customer {
-    @JsonProperty("Customer number")
-    private long clientId;
-    @JsonProperty("Customer name")
-    private String name;
-    @JsonProperty("Customer surename")
-    private String surename;
-    @JsonProperty("Customer phone_number")
-    private String phone_number;
-    @JsonProperty("Customer city")
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @Column(name = "firstName")
+    private String firstName;
+    @Column(name = "lastName")
+    private String lastName;
+    @Column(name = "phone")
+    private String phone;
+    @Column(name = "city")
     private String city;
-    @JsonProperty("Customer addres")
-    private String addres;
+    @Column(name = "address")
+    private String address;
 
-    public customer(long clientId, String name, String surename, String phone_number, String city, String addres) {
-        this.clientId = clientId;
-        this.name = name;
-        this.surename = surename;
-        this.phone_number = phone_number;
+    public customer() {
+
+    }
+
+    public customer(Long id, String firstName, String lastName, String phone, String city, String address) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
         this.city = city;
-        this.addres = addres;
+        this.address = address;
     }
 
-    public long getClientId() {
-        return clientId;
+    public Long getId() {
+        return id;
     }
 
-    public void setClientId(long clientId) {
-        this.clientId = clientId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+
+        this.firstName = firstName;
     }
 
-    public String getSurename() {
-        return surename;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSurename(String surename) {
-        this.surename = surename;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getPhone_number() {
-        return phone_number;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getCity() {
@@ -65,12 +78,17 @@ public class customer {
         this.city = city;
     }
 
-    public String getAddres() {
-        return addres;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAddres(String addres) {
-        this.addres = addres;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", phone=" + phone + ", city=" + city + ", address=" + address + "]";
     }
 
 
