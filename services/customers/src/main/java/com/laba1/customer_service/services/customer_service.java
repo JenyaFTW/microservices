@@ -28,7 +28,7 @@ public class customer_service {
     }
 
     public customer getById (long id) {
-        return reposit.findById(id).get();
+        return reposit.findById(id).orElse(null);
     }
 
     public void addCustomer (customer customer) {
