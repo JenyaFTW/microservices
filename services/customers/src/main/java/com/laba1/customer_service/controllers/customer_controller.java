@@ -12,8 +12,12 @@ import java.util.List;
 @RestController
 public class customer_controller {
 
+    private final customer_service CustomService;
+
     @Autowired
-    private customer_service CustomService = new customer_service();
+    public customer_controller(customer_service CustomService) {
+        this.CustomService = CustomService;
+    }
 
     @GetMapping()
     public ResponseEntity<List<customer>> getAllCustomers () {
@@ -28,17 +32,17 @@ public class customer_controller {
     }
 
     @PostMapping()
-    public void createOrder (@RequestBody customer customer) {
+    public void addCustomer (@RequestBody customer customer) {
         CustomService.addCustomer(customer);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteOrder (@PathVariable Long id) {
+    public void deleteCustomer (@PathVariable Long id) {
         CustomService.deleteCustomer(id);
     }
 
     @PutMapping("/{id}")
-    public void updateOrder (@RequestBody customer customer, @PathVariable Long id) {
+    public void updateCustomer (@RequestBody customer customer, @PathVariable Long id) {
         if (customer.getId() == null) customer.setId(id);
         CustomService.updateCustomer(customer);
     }
