@@ -1,21 +1,27 @@
 package com.microservices.orderservice.entity;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table
 public class Order {
 
+    @Id()
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column
     private Long clientId;
-
+    @Column
+    @ElementCollection
     private List<Long> itemId;
 
     public Order() {
 
     }
 
-    public Order(Long id, Long clientId, List<Long> itemId) {
-        this.id = id;
+    public Order(Long clientId, List<Long> itemId) {
         this.clientId = clientId;
         this.itemId = itemId;
     }
