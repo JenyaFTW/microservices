@@ -10,22 +10,30 @@ import java.util.List;
 @Service
 public class OrderService {
 
-    private OrderRepository orderRepository;
-
-    public OrderRepository getOrderRepository() {
-        return orderRepository;
-    }
+    private final OrderRepository orderRepository;
 
     @Autowired
-    public void setOrderRepository(OrderRepository orderRepository) {
+    public OrderService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
     }
 
-    public Order getOrderById(long id) {
-        return orderRepository.getOrderById(id);
+    public Order getOrderById(Long id) {
+        return orderRepository.findById(id).orElse(null);
     }
 
     public List<Order> getAllOrders() {
-        return orderRepository.getAllOrders();
+        return orderRepository.findAll();
+    }
+
+    public void addOrder (Order order) {
+        orderRepository.save(order);
+    }
+
+    public void updateOrder (Order order) {
+        orderRepository.save(order);
+    }
+
+    public void deleteOrder (Long id) {
+        orderRepository.deleteById(id);
     }
 }
