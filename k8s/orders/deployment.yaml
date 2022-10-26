@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: warehouse-deployment
+  name: orders-deployment
 spec:
   replicas: 1                      # кількість екземплярів Pod, що буде створено цим Deployment
   selector:
     matchLabels:
-      app: warehouse                # селектор по якому Deployment зв'язаний з Pod
+      app: orders                # селектор по якому Deployment зв'язаний з Pod
   template:
     metadata:
       labels:
-        app: warehouse               # мітка Pod по якому вона буде зв'язана з Deployment та Service
+        app: orders               # мітка Pod по якому вона буде зв'язана з Deployment та Service
     spec:
       containers:
-        - image: warehouse:1       # образ Docker
+        - image: orders:1       # образ Docker
           imagePullPolicy: Never   # вказує k8s, що образ не потрібно завантажувати (варто використовувати лише для випадків, коли образи локальні)
-          name: warehouse           # ім'я контейнеру
+          name: orders           # ім'я контейнеру
           ports:
-            - containerPort: 3001  # порт по якому можна звертатись до поди
+            - containerPort: 3002  # порт по якому можна звертатись до поди
