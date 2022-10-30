@@ -1,12 +1,8 @@
-FROM rust:1.64-alpine
+FROM rust:1.64
 
 WORKDIR /usr/src/auth
 COPY . .
 
-RUN apk add --no-cache musl-dev
-
 RUN cargo install --path .
-
-EXPOSE 3000
 
 CMD ["auth"]
