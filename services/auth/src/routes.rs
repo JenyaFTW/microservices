@@ -1,13 +1,26 @@
+use axum::routing::get;
 use axum::Router;
-use axum::routing::{get, post};
-use crate::handlers::login::login_handler;
-use crate::handlers::me::me_handler;
-use crate::handlers::signup::signup_handler;
+use sqlx::postgres::PgPoolOptions;
+use sqlx::PgPool;
+use std::env;
+use std::sync::Arc;
 
-pub async fn create_routes() -> Router {
-    Router::new()
-        .route("/", get(|| async { "OK" }))
-        .route("/login", post(login_handler))
-        .route("/signup", post(signup_handler))
-        .route("/me", get(me_handler))
+pub mod auth;
+
+#[derive(Clone)]
+pub struct AppState {
+    pub db: PgPool,
+}
+
+pub async fn create_routes() -> Router<AppState> {
+    let pool = PgPoolOptions::new()
+        .max_connections(5)
+        .connect(&*env::var("DATABASE_URL").expect("DATABASE_URL missing"))
+        .await
+        .expect("Can't connect to database");
+
+    let shared_state = Arc::new(AppState { db: pool });
+
+    Router::with_state_arc(shared_state.clone())
+        .nest("/api/auth", auth::create_auth_routes(shared_state.clone()))
 }

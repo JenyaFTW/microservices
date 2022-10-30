@@ -1,23 +1,22 @@
-use std::env;
-use dotenv::dotenv;
-use std::net::{SocketAddr, ToSocketAddrs};
-use axum::Router;
+extern crate core;
 
-pub mod routes;
-pub mod handlers;
+use dotenv::dotenv;
+use std::env;
+
+pub mod lib;
 pub mod models;
+pub mod routes;
 
 #[tokio::main]
 async fn main() {
     dotenv().ok();
 
     let routes = routes::create_routes().await;
-    let listen_host = env::var("HOST").unwrap_or("0.0.0.0".to_string());
-    let listen_port = env::var("PORT").unwrap_or("3000".to_string());
+    let host = env::var("SRV_HOST").expect("SRV_HOST is missing");
+    let port = env::var("SRV_PORT").expect("SRV_PORT is missing");
 
-    println!("Listening on {}:{}", listen_host, listen_port);
-    axum::Server::bind(&format!("{listen_host}:{listen_port}").parse::<SocketAddr>().unwrap())
-        .serve(Router::new().nest("/api/auth", routes).into_make_service())
+    axum::Server::bind(&format!("{}:{}", host, port).parse().unwrap())
+        .serve(routes.into_make_service())
         .await
-        .unwrap()
+        .unwrap();
 }
