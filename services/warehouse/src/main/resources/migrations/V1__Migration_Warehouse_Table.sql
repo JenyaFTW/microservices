@@ -1,8 +1,8 @@
 CREATE SCHEMA IF NOT EXISTS ware;
 
 CREATE TABLE IF NOT EXISTS ware.ware (
-id INT,
-name TEXT NOT NULL,
-price double NOT NULL,
-PRIMARY KEY (id)
+    id INT,
+    name TEXT NOT NULL,
+    price float8 NOT NULL,
+    PRIMARY KEY (id)
 );
