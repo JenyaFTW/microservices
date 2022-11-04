@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class WareService {
@@ -21,19 +20,19 @@ public class WareService {
     }
 
     public void addWare (Ware ware) {
-        warehouseRepository.saveAndFlush(ware);
+        warehouseRepository.insertEmployee(ware);
     }
 
     public void updateWare (Ware ware) {
-        warehouseRepository.save(ware);
+        warehouseRepository.updateEmployee(ware);
     }
 
     public void deleteWare (Ware ware) {
-        warehouseRepository.delete(ware);
+        warehouseRepository.deleteEmployee(ware);
     }
 
     public Ware getWareById (Long id) {
-        return warehouseRepository.findById(id).get();
+        return warehouseRepository.findAll().get(Math.toIntExact(id));
     }
 
 
