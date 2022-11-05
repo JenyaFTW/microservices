@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: email-postgres-deployment
+  name: warehouse-postgres-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: email-postgres-pod
+      app: warehouse-postgres-pod
   template:
     metadata:
       labels:
-        app: email-postgres-pod
+        app: warehouse-postgres-pod
     spec:
       containers:
-        - name: email-postgres-container
+        - name: warehouse-postgres-container
           image: postgres:14.1-alpine3.15
           imagePullPolicy: "IfNotPresent"
           ports:
@@ -44,4 +44,4 @@ spec:
       volumes:
         - name: postgredb
           persistentVolumeClaim:
-            claimName: email-postgres-volume-claim
+            claimName: warehouse-postgres-volume-claim
