@@ -13,9 +13,15 @@ pub struct AppState {
 }
 
 pub async fn create_routes() -> Router<AppState> {
+    let user = env::var("POSTGRES_USER").unwrap_or(String::from("demo"));
+    let password = env::var("POSTGRES_PASSWORD").unwrap_or(String::from("demo"));
+    let db = env::var("POSTGRES_DB").unwrap_or("demo".parse().unwrap());
+    let host = env::var("POSTGRES_SERVICE_HOST").unwrap_or("localhost".parse().unwrap());
+    let port = env::var("POSTGRES_SERVICE_PORT").unwrap_or("5432".parse().unwrap());
+
     let pool = PgPoolOptions::new()
         .max_connections(5)
-        .connect(&*env::var("DATABASE_URL").expect("DATABASE_URL missing"))
+        .connect(&*format!("postgres://{}:{}@{}:{}/{}", user, password, host, port, db))
         .await
         .expect("Can't connect to database");
 
