@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: email-postgres-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: email-postgres-pod
+  template:
+    metadata:
+      labels:
+        app: email-postgres-pod
+    spec:
+      containers:
+        - name: email-postgres-container
+          image: postgres:14.1-alpine3.15
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgredb
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "250m"
+          env:
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: email-secret
+                  key: POSTGRES_DB
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: email-secret
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: email-secret
+                  key: POSTGRES_PASSWORD
+      volumes:
+        - name: postgredb
+          persistentVolumeClaim:
+            claimName: email-postgres-volume-claim
