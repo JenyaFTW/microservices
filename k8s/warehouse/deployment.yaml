@@ -13,7 +13,7 @@ spec:
         app: warehouse               # мітка Pod по якому вона буде зв'язана з Deployment та Service
     spec:
       containers:
-        - image: warehouse:1       # образ Docker
+        - image: warehouse:35       # образ Docker
           imagePullPolicy: Never   # вказує k8s, що образ не потрібно завантажувати (варто використовувати лише для випадків, коли образи локальні)
           name: warehouse           # ім'я контейнеру
           ports:
