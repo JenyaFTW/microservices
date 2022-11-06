@@ -1,1 +1,0 @@
-INSERT INTO demo.ware.ware(id, name, price) VALUES (9999, "abc", 10.0)
