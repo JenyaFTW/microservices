@@ -12,6 +12,13 @@ spec:
       labels:
         app: auth               # мітка Pod по якому вона буде зв'язана з Deployment та Service
     spec:
+      initContainers:
+        - name: run-migrations
+          image: auth-migrations:2
+          command: ["sqlx", "migrate", "run", "--source", "."] # CLI команда запуску міграцій, де $(POSTGRESQL_URL) і $(VERSION) змінні середовища
+          env:
+            - name: DATABASE_URL
+              value: "postgres://demo:demo@postgres:5432/demo?sslmode=disable"
       containers:
         - image: auth-service:2       # образ Docker
           imagePullPolicy: Never   # вказує k8s, що образ не потрібно завантажувати (варто використовувати лише для випадків, коли образи локальні)
