@@ -57,8 +57,29 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>8.5.13</version>
+				<configuration>
+					<url>${env.DATABASE_URL}</url>
+					<user>postgres</user>
+					<password>123</password>
+					<schemas>
+						<schema>customer</schema>
+					</schemas>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.postgresql</groupId>
+						<artifactId>postgresql</artifactId>
+						<version>42.2.8</version>
+						<scope>runtime</scope>
+					</dependency>
+				</dependencies>
+
+			</plugin>
 		</plugins>
 	</build>
 
 </project>
-
