@@ -1,20 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: customers-deployment
+  name: customer-deployment
 spec:
   replicas: 1                      # кількість екземплярів Pod, що буде створено цим Deployment
   selector:
     matchLabels:
-      app: customers                # селектор по якому Deployment зв'язаний з Pod
+      app: customer                # селектор по якому Deployment зв'язаний з Pod
   template:
     metadata:
       labels:
-        app: customers               # мітка Pod по якому вона буде зв'язана з Deployment та Service
+        app: customer               # мітка Pod по якому вона буде зв'язана з Deployment та Service
     spec:
+      initContainers:
+        - name: run-migrations
+          image: customer-migrations:latest
+          command: [ "mvn", "flyway:migrate" ]
+          env:
+            - name: DATABASE_URL
+              value: "jdbc:postgresql://localhost:5432/customer?useSSL=false&serverTimezone=UTC"
+
       containers:
-        - image: customers:1       # образ Docker
+        - image: customer:latest       # образ Docker
           imagePullPolicy: Never   # вказує k8s, що образ не потрібно завантажувати (варто використовувати лише для випадків, коли образи локальні)
-          name: customers           # ім'я контейнеру
+          name: customer           # ім'я контейнеру
           ports:
-            - containerPort: 3003  # порт по якому можна звертатись до поди 
+            - containerPort: 3003  # порт по якому можна звертатись до поди
+          envFrom:
+            - configMapRef:
+                name: customer-config
+            - secretRef:
+                name: customer-secret
