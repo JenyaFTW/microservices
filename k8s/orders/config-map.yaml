@@ -4,5 +4,5 @@ metadata:
   name: orders-config
 data:
   POSTGRES_DB: orders
-  POSTGRES_HOST: postgres
+  POSTGRES_HOST: postgres:5432
   DATABASE_URL: jdbc:postgresql://localhost:5432/orders?useSSL=false&serverTimezone=UTC
