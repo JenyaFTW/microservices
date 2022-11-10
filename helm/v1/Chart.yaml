@@ -4,3 +4,8 @@ version: 0.0.1
 name: microservices-labs
 appVersion: "0.1"
 description: "Microservices Labs"
+
+dependencies:
+- name: postgresql
+  version: 10.16.2
+  repository: https://charts.bitnami.com/bitnami

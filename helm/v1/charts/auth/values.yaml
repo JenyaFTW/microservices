@@ -23,7 +23,7 @@ config:
 
 secret:
   JWT_SECRET: d7b79c83a74b1bfed52d80df15558874
-  POSTGRES_USER: demo
+  POSTGRES_USER: postgres
   POSTGRES_PASSWORD: demo
 
 migrations:
@@ -31,4 +31,4 @@ migrations:
     name: auth-migrations
     tag: 2
   config:
-    DATABASE_URL: "postgres://demo:demo@postgres:5432/demo?sslmode=disable"
+    DATABASE_URL: "postgres://postgres:demo@postgres:5432/demo?sslmode=disable"
