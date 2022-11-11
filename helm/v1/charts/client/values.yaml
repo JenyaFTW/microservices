@@ -1,0 +1,18 @@
+replicaCount: 1
+
+service:
+  ports:
+    - name: http
+      port: 8080
+      containerPort: 3004
+
+ingress:
+  path: /
+  port: 8080
+
+selector:
+  app: client
+
+image:
+  name: client
+  tag: 1
