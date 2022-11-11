@@ -4,3 +4,7 @@ version: 0.1.0                       # Версія чарту по формат
 name: customer                       # Довільне ім'я Chart, або додатку
 appVersion: "0.1"                    # Версія додатку
 description: "Customer service"      # Довільний опис
+dependencies:
+  - name: common
+    version: 0.1.0
+    repository: file://../common

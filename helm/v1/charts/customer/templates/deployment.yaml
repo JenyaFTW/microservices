@@ -33,4 +33,4 @@ spec:
             - configMapRef:
                 name: {{ include "common.fullname" . }}-config
             - secretRef:
-                name: {{ include "common.fullname" . }}-secret}}-{{ .Chart.Name }}-secret
+                name: {{ include "common.fullname" . }}-secret
