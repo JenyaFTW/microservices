@@ -1,0 +1,37 @@
+replicaCount: 1
+
+service:
+  ports:
+    - name: http
+      port: 8080
+      containerPort: 3001
+
+ingress:
+  path: /api/warehouse
+  port: 3001
+
+selector:
+  app: warehouse
+
+image:
+  name: warehouse-service
+  tag: 2
+
+config:
+  POSTGRES_DB: demo
+  POSTGRES_HOST: postgres
+  DATABASE_URL: jdbc:postgresql://postgres:5432/demo
+
+secret:
+  #  JWT_SECRET: d7b79c83a74b1bfed52d80df15558874
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: demo
+#  POSTGRES_USER: "ZGVtbw=="
+#  POSTGRES_PASSWORD: "ZGVtbw=="
+
+migrations:
+  image:
+    name: warehouse-migrations
+    tag: 2
+  config:
+    DATABASE_URL: "jdbc:postgresql://postgres:5432/demo"
