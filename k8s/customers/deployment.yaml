@@ -14,14 +14,14 @@ spec:
     spec:
       initContainers:
         - name: run-migrations
-          image: customer-migrations:latest
+          image: customer-migrations:2
           command: [ "mvn", "flyway:migrate" ]
           env:
             - name: DATABASE_URL
-              value: "jdbc:postgresql://postgres:5432/customer?useSSL=false&serverTimezone=UTC"
+              value: "jdbc:postgresql://localhost:5432/demo"
 
       containers:
-        - image: customer:latest       # образ Docker
+        - image: customer:2       # образ Docker
           imagePullPolicy: Never   # вказує k8s, що образ не потрібно завантажувати (варто використовувати лише для випадків, коли образи локальні)
           name: customer           # ім'я контейнеру
           ports:
