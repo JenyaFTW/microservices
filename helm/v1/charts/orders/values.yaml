@@ -33,4 +33,4 @@ migrations:
     name: orders-migrations
     tag: 2
   config:
-    DATABASE_URL: "postgres://postgres:demo@postgres:5432/demo?sslmode=disable"
+    DATABASE_URL: "jdbc:postgresql://postgres:5432/demo"
