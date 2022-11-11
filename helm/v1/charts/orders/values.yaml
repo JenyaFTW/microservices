@@ -1,0 +1,36 @@
+replicaCount: 1
+
+service:
+  ports:
+    - name: http
+      port: 8080
+      containerPort: 3002
+
+ingress:
+  path: /api/orders
+  port: 3002
+
+selector:
+  app: orders
+
+image:
+  name: orders-service
+  tag: 2
+
+config:
+  POSTGRES_DB: demo
+  POSTGRES_HOST: postgres
+
+secret:
+#  JWT_SECRET: d7b79c83a74b1bfed52d80df15558874
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: demo
+#  POSTGRES_USER: "ZGVtbw=="
+#  POSTGRES_PASSWORD: "ZGVtbw=="
+
+migrations:
+  image:
+    name: orders-migrations
+    tag: 2
+  config:
+    DATABASE_URL: "postgres://postgres:demo@postgres:5432/demo?sslmode=disable"
