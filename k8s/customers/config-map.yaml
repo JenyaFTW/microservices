@@ -5,4 +5,4 @@ metadata:
 data:
   POSTGRES_DB: customer
   POSTGRES_HOST: postgres
-  DATABASE_URL: jdbc:postgresql://postgres:5432/customer?useSSL=false&serverTimezone=UTC
+  DATABASE_URL: jdbc:postgresql://localhost:5432/demo
