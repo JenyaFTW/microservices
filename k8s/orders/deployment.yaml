@@ -18,7 +18,7 @@ spec:
           command: [ "mvn", "flyway:migrate" ] # CLI команда запуску міграцій, де $(POSTGRESQL_URL) і $(VERSION) змінні середовища
           env:
             - name: DATABASE_URL
-              value: "jdbc:postgresql://localhost:5432/orders?useSSL=false&serverTimezone=UTC"
+              value: "jdbc:postgresql://postgres:5432/demo"
 
       containers:
         - image: orders:2       # образ Docker

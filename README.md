@@ -1,4 +1,4 @@
-# Lab 1
+# Lab 2
 
 ## Team (#4):
 - Яковлєв Євген ([Auth Service](https://github.com/JenyaFTW/microservices-1/tree/main/services/auth), [k8s](https://github.com/JenyaFTW/microservices-1/tree/main/k8s/auth), [Docker Image](https://hub.docker.com/layers/neura/auth-service/1/images/sha256-768b75b9ba44314871159216115c1a4808c99e5a8f927bc0dcc6b013f41a91a6?context=repo))
@@ -31,14 +31,32 @@
 ### Orders
 `GET /api/orders - Get all orders`
 
-`GET /api/orders/{id} - Get orders by id`
+`GET /api/orders/get/{orderId} - Get order by id`
+
+`POST /api/orders/create - Create order`
+
+`PUT /api/orders/update/{orderId} - Update order by id`
+
+`DELETE /api/orders/delete/{orderId} - Delete order by id`
 
 ### Customers
-`GET /api/customers - Get all customers`
+`GET /api/customer - Get all customers`
 
-`GET /api/customers/{id} - Get customers by id`
+`GET /api/customer/{id} - Get customer by id`
+
+`POST /api/customer - Create customer`
+
+`PUT /api/customer/{id} - Update customer by id`
+
+`DELETE /api/customer/{id} - Delete customer by id`
 
 ### Warehouse
 `GET /api/warehouse - Get all items in warehouse`
 
-`GET /api/warehouse/{id} - Get item in warehouse by id`
+`GET /api/warehouse/get/{id} - Get item in warehouse by id`
+
+`POST /api/warehouse/create - Create item in warehouse`
+
+`POST /api/warehouse/update/{id} - Update item in warehouse by id`
+
+`DELETE /api/warehouse/delete/{id} - Delete item in warehouse by id`
