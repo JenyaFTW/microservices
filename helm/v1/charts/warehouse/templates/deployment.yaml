@@ -34,4 +34,4 @@ spec:
             - configMapRef:
                 name: {{ .Release.Name }}-{{ .Chart.Name }}-config
             - secretRef:
-            name: {{ .Release.Name }}-{{ .Chart.Name }}-secret
+                name: {{ .Release.Name }}-{{ .Chart.Name }}-secret
