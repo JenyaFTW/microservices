@@ -71,8 +71,8 @@
                 <version>8.5.13</version>
                 <configuration>
                     <url>${env.DATABASE_URL}</url>
-                    <user>demo</user>
-                    <password>demo</password>
+                    <user>${env.POSTGRES_USER}</user>
+                    <password>${env.POSTGRES_PASSWORD}</password>
                     <schemas>
                         <schema>ware</schema>
                     </schemas>
