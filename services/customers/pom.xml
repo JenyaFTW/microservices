@@ -63,8 +63,8 @@
 				<version>8.5.13</version>
 				<configuration>
 					<url>${env.DATABASE_URL}</url>
-					<user>postgres</user>
-					<password>123</password>
+					<user>demo</user>
+					<password>demo</password>
 					<schemas>
 						<schema>customer</schema>
 					</schemas>
