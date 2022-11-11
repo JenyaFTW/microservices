@@ -58,8 +58,9 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>8.5.13</version>
                 <configuration>
-                    <user>postgres</user>
-                    <password>root</password>
+                    <url>${env.DATABASE_URL}</url>
+                    <user>demo</user>
+                    <password>demo</password>
                     <schemas>
                         <schema>orders</schema>
                     </schemas>
@@ -75,5 +76,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

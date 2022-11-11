@@ -18,7 +18,7 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @GetMapping("/{orderId}")
+    @GetMapping("get/{orderId}")
     @ResponseBody
     public Order getOrderById(@PathVariable long orderId) {
         return orderService.getOrderById(orderId);
@@ -30,17 +30,17 @@ public class OrderController {
         return orderService.getAllOrders();
     }
 
-    @PostMapping()
+    @PostMapping("create")
     public void createOrder (@RequestBody Order order) {
         orderService.addOrder(order);
     }
 
-    @DeleteMapping("/{orderId}")
+    @DeleteMapping("delete/{orderId}")
     public void deleteOrder (@PathVariable Long orderId) {
         orderService.deleteOrder(orderId);
     }
 
-    @PutMapping("/{orderId}")
+    @PutMapping("update/{orderId}")
     public void updateOrder (@RequestBody Order order, @PathVariable Long orderId) {
         if (order.getId() == null) order.setId(orderId);
         orderService.updateOrder(order);

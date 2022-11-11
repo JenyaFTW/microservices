@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: orders-config
 data:
-  POSTGRES_DB: orders
-  POSTGRES_HOST: postgres:5432
-  DATABASE_URL: jdbc:postgresql://localhost:5432/orders?useSSL=false&serverTimezone=UTC
+  POSTGRES_DB: demo
+  POSTGRES_HOST: postgres
+  DATABASE_URL: jdbc:postgresql://postgres:5432/demo
