@@ -1,0 +1,48 @@
+{{- $defaults := . -}}
+
+  {{- range $index, $value := .Values.microservises }}
+  {{- $_ := set $value "nameOverride" $index }}
+  {{- $microservice := dict "Values" $value }}
+  {{- $defaultsCopy := $defaults | deepCopy }}
+  {{- with mergeOverwrite $defaultsCopy $microservice }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "common.fullname" . }}
+spec:
+  replicas: {{ .Values.replicaCount | default 1 }}           # кількість екземплярів Pod, що буде створено цим Deployment
+  selector:
+    matchLabels:
+      {{- include "common.selectorLabels" . | nindent 6 }}       # селектор по якому Deployment зв'язаний з Pod
+  template:
+    metadata:
+      labels:
+        {{- include "common.selectorLabels" . | nindent 8 }}      # мітка Pod по якому вона буде зв'язана з Deployment та Service
+    spec:
+      initContainers:
+        - name: run-migrations
+          image: {{ .Values.migrations.image.name }}:{{ .Values.migrations.image.tag }}
+          command: [ "mvn", "flyway:migrate"] # CLI команда запуску міграцій, де $(POSTGRESQL_URL) і $(VERSION) змінні середовища
+          env:
+            - name: DATABASE_URL
+              value: {{ .Values.migrations.config.DATABASE_URL | quote }}
+
+      containers:
+        - image: {{ .Values.image.name }}:{{ .Values.image.tag }}       # образ Docker
+          imagePullPolicy: Never   # вказує k8s, що образ не потрібно завантажувати (варто використовувати лише для випадків, коли образи локальні)
+          name: {{ .Values.image.name }}           # ім'я контейнеру
+          ports:
+            {{- range .Values.service.ports }}
+            - name: {{ .name }}
+              containerPort: {{ .containerPort }}
+              protocol: TCP
+            {{- end }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "common.fullname" . }}-config
+            - secretRef:
+            name: {{ include "common.fullname" . }}-secret
+
+  {{ end }}
+  {{ end }}
