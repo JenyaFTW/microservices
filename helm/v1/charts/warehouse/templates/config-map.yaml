@@ -5,4 +5,4 @@ metadata:
 data:
   {{- range $key, $value := .Values.config }}
     {{ $key }}: {{ $value }}
-    {{- end }}
+  {{- end }}
