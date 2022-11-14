@@ -1,9 +1,9 @@
 apiVersion: v2                       # версія helm API
 type: application                    # Тип Chart, може бути application та library
 version: 0.1.0                       # Версія чарту по формату "SemVer 2"
-name: customer                       # Довільне ім'я Chart, або додатку
+name: orders                       # Довільне ім'я Chart, або додатку
 appVersion: "0.1"                    # Версія додатку
-description: "Orders service"      # Довільний опис
+description: "Orders Service"      # Довільний опис
 dependencies:
   - name: common
     version: 0.1.0
