@@ -1,1 +1,1 @@
-{{- template "common.deployment-sqlx" . -}}
+{{- template "common.deployment-flyway" . -}}
