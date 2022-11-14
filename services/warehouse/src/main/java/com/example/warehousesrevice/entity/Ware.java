@@ -7,20 +7,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @JsonSerialize
 @Entity
+@Table(schema = "ware")
 public class Ware {
 
-    public Ware ( String name, double price) {
+    public Ware (long id, String name, double price) {
+        this.id = id;
         this.name = name;
         this.price = price;
     }
 
 
     @JsonProperty
-    @Id ()
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @JsonProperty

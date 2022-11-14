@@ -4,17 +4,18 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table
+@Table(schema = "orders")
 public class Order {
 
     @Id()
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
     private Long clientId;
     @Column
     @ElementCollection
+    @CollectionTable(schema = "orders")
     private List<Long> itemId;
 
     public Order() {

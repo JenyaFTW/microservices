@@ -3,7 +3,7 @@ FROM maven:3.8.6-openjdk-18 AS builder
 ADD ./pom.xml pom.xml
 ADD ./src src/
 
-RUN mvn clean package
+RUN mvn clean package -DskipTests
 
 FROM openjdk:18
 
