@@ -7,7 +7,7 @@ service:
 
 ingress:
   path: /api/customer
-  port: 3003
+  port: 8080
 
 selector:
   app: customer
@@ -19,6 +19,7 @@ image:
 config:
   POSTGRES_DB: demo
   POSTGRES_HOST: postgres
+  DATABASE_URL: jdbc:postgresql://postgres:5432/demo
 
 secret:
   POSTGRES_USER: postgres
@@ -29,4 +30,7 @@ migrations:
     name: customer-migrations
     tag: 2
   config:
+    POSTGRES_DB: demo
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: demo
     DATABASE_URL: "jdbc:postgresql://postgres:5432/demo"

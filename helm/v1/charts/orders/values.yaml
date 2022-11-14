@@ -8,7 +8,7 @@ service:
 
 ingress:
   path: /api/orders
-  port: 3002
+  port: 8080
 
 selector:
   app: orders
@@ -34,4 +34,7 @@ migrations:
     name: orders-migrations
     tag: 2
   config:
+    POSTGRES_DB: demo
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: demo
     DATABASE_URL: "jdbc:postgresql://postgres:5432/demo"

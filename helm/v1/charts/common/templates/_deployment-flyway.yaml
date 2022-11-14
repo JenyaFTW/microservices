@@ -27,6 +27,12 @@ spec:
           env:
             - name: DATABASE_URL
               value: {{ .Values.migrations.config.DATABASE_URL | quote }}
+            - name: POSTGRES_DB
+              value: {{ .Values.migrations.config.POSTGRES_DB | quote }}
+            - name: POSTGRES_USER
+              value: {{ .Values.migrations.config.POSTGRES_USER | quote }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.migrations.config.POSTGRES_PASSWORD | quote }}
 
       containers:
         - image: {{ .Values.image.name }}:{{ .Values.image.tag }}       # образ Docker
@@ -40,8 +46,10 @@ spec:
             {{- end }}
           envFrom:
             - configMapRef:
-                name: {{ include "common.fullname" . }}-config
+                optional: true
+                name: {{ include "common.fullname" $ }}-config
             - secretRef:
-            name: {{ include "common.fullname" . }}-secret
+                optional: true
+                name: {{ include "common.fullname" $ }}-secret
 {{- end -}}
 {{- end -}}

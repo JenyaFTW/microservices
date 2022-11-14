@@ -39,8 +39,10 @@ spec:
             {{- end }}
           envFrom:
             - configMapRef:
-                name: {{ include "common.fullname" . }}-config
+                optional: true
+                name: {{ include "common.fullname" $ }}-config
             - secretRef:
-            name: {{ include "common.fullname" . }}-secret
+                optional: true
+                name: {{ include "common.fullname" $ }}-secret
 {{- end -}}
 {{- end -}}

@@ -13,11 +13,8 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/api/warehouse")
 public class WarehouseController {
-
-
     @Autowired
     WareService wareService;
-
 
     @GetMapping()
     public ResponseEntity<List<Ware>> getAllWares () {
