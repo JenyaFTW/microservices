@@ -1,5 +1,3 @@
-# Lab 2
-
 ## Team (#4):
 - Яковлєв Євген ([Auth Service](https://github.com/JenyaFTW/microservices-1/tree/main/services/auth), [k8s](https://github.com/JenyaFTW/microservices-1/tree/main/k8s/auth), [Docker Image](https://hub.docker.com/layers/neura/auth-service/1/images/sha256-768b75b9ba44314871159216115c1a4808c99e5a8f927bc0dcc6b013f41a91a6?context=repo))
 - Коваль Максим ([Warehouse Service](https://github.com/JenyaFTW/microservices-1/tree/main/services/warehouse), [k8s](https://github.com/JenyaFTW/microservices-1/tree/main/k8s/warehouse), [Docker Image](https://hub.docker.com/layers/maksolo27/warehouse-service/1/images/sha256-7b4ae6150b5888108de495146b651be7b9f29f2b0c8e3e376849bd959cfb254a?context=repo))
