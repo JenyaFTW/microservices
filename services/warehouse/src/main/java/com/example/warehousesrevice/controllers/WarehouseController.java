@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
+@CrossOrigin
 @RestController
 @RequestMapping(path = "/api/warehouse")
 public class WarehouseController {
@@ -23,8 +24,8 @@ public class WarehouseController {
     }
 
     @GetMapping("get/{id}")
-    public ResponseEntity<Ware> getAllWares (@PathVariable String id) {
-        return ResponseEntity.ok (wareService.getAllWares ().get (Integer.parseInt(id)));
+    public ResponseEntity<Ware> getAllWares (@PathVariable long id) {
+        return ResponseEntity.ok(wareService.getWareById(id));
     }
 
     @DeleteMapping("delete/{id}")

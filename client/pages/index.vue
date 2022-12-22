@@ -1,5 +1,3 @@
 <template>
-  <div>
-    Welcome to our store!
-  </div>
+  <div>Welcome to our store!</div>
 </template>
