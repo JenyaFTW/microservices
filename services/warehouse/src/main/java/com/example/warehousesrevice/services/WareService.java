@@ -33,7 +33,7 @@ public class WareService {
     }
 
     public Ware getWareById (Long id) {
-        return warehouseRepository.findById(id).get();
+        return warehouseRepository.findById(id).orElse(null);
     }
 
 
