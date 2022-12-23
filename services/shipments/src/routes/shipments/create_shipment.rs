@@ -38,8 +38,7 @@ pub async fn create_shipment(
         }
     };
 
-    let body = body.content_length().unwrap();
-    if body == 0 {
+    if body.status() == StatusCode::NOT_FOUND {
         return RestResponse::with_message(
             StatusCode::NOT_FOUND,
             "Order not found",

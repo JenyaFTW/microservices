@@ -7,4 +7,6 @@ docker build -t customer-service:2 -f services/customers/Dockerfile.main service
 docker build -t customer-migrations:2 -f services/customers/Dockerfile.migrations services/customers
 docker build -t auth-service:2 -f services/auth/Dockerfile services/auth
 docker build -t auth-migrations:2 -f services/auth/migrations/Dockerfile services/auth/migrations
+docker build -t shipments-service:4 -f services/shipments/Dockerfile services/shipments
+docker build -t shipment-migrations:4 -f services/shipments/Dockerfile.migrations services/shipments
 docker build -t client:1 -f client/Dockerfile client
