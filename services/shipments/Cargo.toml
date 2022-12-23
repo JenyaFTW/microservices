@@ -21,6 +21,7 @@ sha2 = "0.10.6"
 dotenv = "0.15.0"
 diesel = { version = "2.0.0", features = ["postgres"] }
 sea-orm = { version = "^0", features = [ "sqlx-postgres", "runtime-tokio-native-tls", "macros" ] }
+reqwest = "0.11.13"
 migration = { path = "migration" }
 entity = { path = "entity" }
 
