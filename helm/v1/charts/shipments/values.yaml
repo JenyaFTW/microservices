@@ -25,3 +25,13 @@ secret:
   JWT_SECRET: d7b79c83a74b1bfed52d80df15558874
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: demo
+
+migrations:
+  image:
+    name: shipment-migrations
+    tag: 4
+  config:
+    POSTGRES_DB: demo
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: demo
+    DATABASE_URL: "postgres://postgres:demo@postgres:5432/demo?sslmode=disable"

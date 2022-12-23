@@ -27,7 +27,7 @@ public class OrderController {
     public ResponseEntity<Order> getOrderById(@PathVariable long orderId) {
         Order order = orderService.getOrderById(orderId);
         if (order == null)
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else
             return ResponseEntity.ok(order);
     }
@@ -41,27 +41,27 @@ public class OrderController {
     @PostMapping("create")
     public ResponseEntity createOrder(@RequestBody Order order) {
         RestTemplate restTemplate = new RestTemplate();
-        if (!restTemplate.getForEntity("http://localhost:3003/api/customer/" + order.getClientId(), Object.class).hasBody()) {
+        if (!restTemplate.getForEntity("http://local-customer:8080/api/customer/" + order.getClientId(), Object.class).hasBody()) {
             System.out.println("No such customer");
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         for (Long itemId : order.getItemId()) {
-            if (!restTemplate.getForEntity("http://localhost:3001/api/warehouse/get/" + itemId, Object.class).hasBody()) {
+            if (!restTemplate.getForEntity("http://local-warehouse:8080/api/warehouse/get/" + itemId, Object.class).hasBody()) {
                 System.out.println("No such item in warehouse");
-                return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         }
         orderService.addOrder(order);
-        return ResponseEntity.ok(HttpStatus.ACCEPTED);
+        return ResponseEntity.ok(order);
     }
 
     @DeleteMapping("delete/{orderId}")
     public ResponseEntity deleteOrder(@PathVariable Long orderId) {
         Order order = orderService.getOrderById(orderId);
         if (order == null)
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         orderService.deleteOrder(orderId);
-        return ResponseEntity.ok(HttpStatus.ACCEPTED);
+        return ResponseEntity.ok(order);
     }
 
     @PutMapping("update/{orderId}")
@@ -69,9 +69,9 @@ public class OrderController {
         if (order.getId() == null) order.setId(orderId);
         Order order1 = orderService.getOrderById(orderId);
         if (order1 == null)
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         orderService.updateOrder(order);
-        return ResponseEntity.ok(HttpStatus.ACCEPTED);
+        return ResponseEntity.ok(order);
     }
 
 }
