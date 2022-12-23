@@ -10,12 +10,6 @@ pub struct Migration;
 impl MigrationTrait for Migration {
     async fn up(&self, manager: &SchemaManager) -> Result<(), DbErr> {
         if manager.get_database_backend() == DbBackend::Postgres {
-            let sql = r#"
-                CREATE SCHEMA shipments;
-            "#;
-            let stmt = Statement::from_string(manager.get_database_backend(), sql.to_owned());
-            manager.get_connection().execute(stmt).await?;
-
             manager
                 .create_type(
                     Type::create()
@@ -33,11 +27,12 @@ impl MigrationTrait for Migration {
                         ColumnDef::new(Shipment::Id)
                             .uuid()
                             .primary_key()
-                            .not_null(),
+                            .not_null()
+                            .extra("DEFAULT public.uuid_generate_v4()".into()),
                     )
                     .col(
                         ColumnDef::new(Shipment::OrderId)
-                            .uuid()
+                            .big_integer()
                             .unique_key()
                             .not_null()
                     )
