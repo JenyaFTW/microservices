@@ -27,6 +27,25 @@ pub async fn create_shipment(
         );
     }
 
+    let body_result = reqwest::get(format!("http://local-orders:8080/api/orders/get/{}", payload.order_id)).await;
+    let body = match body_result {
+        Ok(s) => s,
+        Err(e) => {
+            return RestResponse::with_message(
+                StatusCode::INTERNAL_SERVER_ERROR,
+                &e.to_string(),
+            )
+        }
+    };
+
+    let body = body.content_length().unwrap();
+    if body == 0 {
+        return RestResponse::with_message(
+            StatusCode::NOT_FOUND,
+            "Order not found",
+        )
+    }
+
     let shipment = shipment::ActiveModel {
         order_id: Set(payload.order_id),
         ..Default::default()

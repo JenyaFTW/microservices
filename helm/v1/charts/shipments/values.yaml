@@ -1,0 +1,27 @@
+replicaCount: 1
+
+service:
+  ports:
+    - name: http
+      port: 8080
+      containerPort: 3005
+
+ingress:
+  path: /api/shipments
+  port: 8080
+
+selector:
+  app: shipments
+
+image:
+  name: shipments-service
+  tag: 4
+
+config:
+  POSTGRES_DB: demo
+  POSTGRES_HOST: postgres
+
+secret:
+  JWT_SECRET: d7b79c83a74b1bfed52d80df15558874
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: demo

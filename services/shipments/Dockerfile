@@ -1,10 +1,10 @@
-FROM rust:1.64
+FROM rust:1.65
 
 WORKDIR /usr/src/shipment
 COPY . .
 
 RUN cargo install --path .
 
-EXPOSE 3000
+EXPOSE 3005
 
-CMD ["auth"]
+CMD ["shipment"]
