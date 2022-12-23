@@ -1,7 +1,11 @@
 use axum::extract::{Json, State};
 use axum::http::StatusCode;
 use axum::response::IntoResponse;
+use sea_orm::ActiveValue::Set;
+use sea_orm::{ActiveModelTrait, NotSet};
 use serde::Deserialize;
+use entity::shipment;
+use entity::shipment::Model;
 use crate::AppState;
 use crate::lib::rest_response::RestResponse;
 use crate::models::shipment::Shipment;
@@ -9,7 +13,7 @@ use crate::models::shipment::Shipment;
 #[derive(Deserialize)]
 pub struct CreateShipmentRequest {
     #[serde(rename = "orderId")]
-    pub order_id: i32,
+    pub order_id: i64,
 }
 
 pub async fn create_shipment(
@@ -23,16 +27,21 @@ pub async fn create_shipment(
         );
     }
 
-    let shipment_result = Shipment::create(&s.db, payload.order_id).await;
+    let shipment = shipment::ActiveModel {
+        order_id: Set(payload.order_id),
+        ..Default::default()
+    };
+
+    let shipment_result = shipment.insert(&s.sdb).await;
     let shipment = match shipment_result {
         Ok(s) => s,
-        Err(_) => {
+        Err(e) => {
             return RestResponse::with_message(
                 StatusCode::INTERNAL_SERVER_ERROR,
-                "Error while creating shipment",
+                &e.to_string(),
             )
         }
     };
 
-    RestResponse::<Shipment>::with_data(StatusCode::OK, shipment)
+    RestResponse::<Model>::with_data(StatusCode::OK, shipment)
 }
