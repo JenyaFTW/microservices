@@ -16,6 +16,7 @@ import java.util.List;
 public class WarehouseController {
     @Autowired
     WareService wareService;
+    private boolean isPaused = false;
 
     @GetMapping()
     public ResponseEntity<List<Ware>> getAllWares () {
@@ -25,8 +26,15 @@ public class WarehouseController {
 
     @GetMapping("get/{id}")
     public ResponseEntity<Ware> getWare (@PathVariable long id) throws InterruptedException  {
-        Thread.sleep(10000);
+        if (isPaused) {
+            Thread.sleep (10000);
+        }
         return ResponseEntity.ok(wareService.getWareById(id));
+    }
+
+    @PostMapping("pause")
+    public void pause() {
+        isPaused = !isPaused;
     }
 
     @DeleteMapping("delete/{id}")
