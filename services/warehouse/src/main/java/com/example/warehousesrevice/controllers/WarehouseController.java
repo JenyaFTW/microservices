@@ -24,7 +24,8 @@ public class WarehouseController {
     }
 
     @GetMapping("get/{id}")
-    public ResponseEntity<Ware> getAllWares (@PathVariable long id) {
+    public ResponseEntity<Ware> getWare (@PathVariable long id) throws InterruptedException  {
+        Thread.sleep(10000);
         return ResponseEntity.ok(wareService.getWareById(id));
     }
 
