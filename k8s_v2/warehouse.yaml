@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: warehouse-virtual
+spec:
+  hosts:
+    - local-warehouse
+  http:
+    - route:
+        - destination:
+            host: local-warehouse
+      timeout: 5s
+      retries:
+        attempts: 3
+        retryOn: 5xx
+        perTryTimeout: 5s

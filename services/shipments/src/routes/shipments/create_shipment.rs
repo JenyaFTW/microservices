@@ -38,6 +38,13 @@ pub async fn create_shipment(
         }
     };
 
+    if body.status() == StatusCode::INTERNAL_SERVER_ERROR {
+        return RestResponse::with_message(
+            StatusCode::NOT_FOUND,
+            "Orders service unavailable",
+        )
+    }
+
     if body.status() == StatusCode::NOT_FOUND {
         return RestResponse::with_message(
             StatusCode::NOT_FOUND,
