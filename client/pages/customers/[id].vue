@@ -90,7 +90,6 @@ onMounted(async () => {
   city.value = data.city;
 });
 
-
 const saveCustomer = async () => {
   const data = {
     firstName: firstName.value,
