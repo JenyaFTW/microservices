@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: orders-virtual
+spec:
+  hosts:
+    - local-orders
+  http:
+    - route:
+        - destination:
+            host: local-orders
+      timeout: 5s
+      retries:
+        attempts: 3
+        retryOn: 5xx
+        perTryTimeout: 5s
