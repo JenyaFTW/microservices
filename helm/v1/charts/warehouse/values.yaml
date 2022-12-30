@@ -40,7 +40,7 @@ migrations:
     DATABASE_URL: "jdbc:postgresql://postgres:5432/demo"
 
 virtual:
-  timeout: 5s
+  timeout: 2s
   retries:
     attempts: 3
     retryOn: 5xx
@@ -48,6 +48,6 @@ virtual:
 
 destination:
   consecutive5xxErrors: 5
-  interval: 10s
+  interval: 30s
   baseEjectionTime: 30s
   maxEjectionPercent: 80
