@@ -1,3 +1,4 @@
+helm dep build charts/common
 helm dep build charts/client
 helm dep build charts/auth
 helm dep build charts/orders

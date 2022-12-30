@@ -18,3 +18,7 @@ secret: {}
 migrations:
   image: {}
   config: {}
+
+virtual: {}
+
+destination: {}

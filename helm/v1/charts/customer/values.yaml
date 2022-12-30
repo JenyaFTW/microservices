@@ -34,3 +34,16 @@ migrations:
     POSTGRES_USER: postgres
     POSTGRES_PASSWORD: demo
     DATABASE_URL: "jdbc:postgresql://postgres:5432/demo"
+
+virtual:
+  timeout: 5s
+  retries:
+    attempts: 3
+    retryOn: 5xx
+    perTryTimeout: 5s
+
+destination:
+  consecutive5xxErrors: 5
+  interval: 10s
+  baseEjectionTime: 30s
+  maxEjectionPercent: 80
