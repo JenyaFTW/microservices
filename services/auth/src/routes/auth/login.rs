@@ -44,6 +44,13 @@ pub async fn login_handler(
         );
     }
 
+    if !user.verified {
+        return RestResponse::<Value>::with_message(
+            StatusCode::FORBIDDEN,
+            "Your account isn't verified".to_string()
+        )
+    }
+
     let token_str = user.to_jwt().await;
 
     RestResponse::<Value>::new(

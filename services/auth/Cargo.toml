@@ -19,6 +19,8 @@ jsonwebtoken = "8.1.1"
 hmac = "0.12.1"
 sha2 = "0.10.6"
 dotenv = "0.15.0"
+lapin = "2.1.1"
+rand = "0.8.5"
 
 [profile.dev.package.sqlx-macros]
 opt-level = 3

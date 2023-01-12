@@ -20,6 +20,7 @@ image:
 config:
   POSTGRES_DB: demo
   POSTGRES_HOST: postgres
+  AMQP_URL: amqp://user:user@rabbitmq:5672
 
 secret:
   JWT_SECRET: d7b79c83a74b1bfed52d80df15558874

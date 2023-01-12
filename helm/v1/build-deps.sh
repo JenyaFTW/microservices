@@ -4,4 +4,5 @@ helm dep build charts/auth
 helm dep build charts/orders
 helm dep build charts/warehouse
 helm dep build charts/customer
+helm dep build charts/email
 helm dep build .

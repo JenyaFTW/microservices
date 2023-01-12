@@ -7,3 +7,10 @@ postgresql:
   persistence:
     size: 5Gi
     mountPath: /var/lib/postgresql/data
+
+rabbitmq:
+  fullnameOverride: rabbitmq
+  auth:
+    username: user
+    password: user
+    erlangCookie: cookie

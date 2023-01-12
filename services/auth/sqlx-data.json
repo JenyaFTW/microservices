@@ -1,6 +1,6 @@
 {
   "db": "PostgreSQL",
-  "82a2dfd04e9431495b1ee6cedc8f0eabc4b819a242dae3146d75ba837ee74fdc": {
+  "1fd35edaffcf6fa15e12928ec9fa66781896eb1b01d435f5087b7d1802f8de86": {
     "describe": {
       "columns": [
         {
@@ -19,17 +19,85 @@
           "type_info": "Varchar"
         },
         {
-          "name": "updated_at",
+          "name": "code",
           "ordinal": 3,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "verified",
+          "ordinal": 4,
+          "type_info": "Bool"
+        },
+        {
+          "name": "updated_at",
+          "ordinal": 5,
           "type_info": "Timestamptz"
         },
         {
           "name": "created_at",
-          "ordinal": 4,
+          "ordinal": 6,
           "type_info": "Timestamptz"
         }
       ],
       "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Uuid"
+        ]
+      }
+    },
+    "query": "UPDATE users SET verified = true WHERE id = $1 RETURNING *"
+  },
+  "3504b7cf45214c98979d0831b95cce40e014a20d331d11b10c2964d39d38bc4b": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Uuid"
+        },
+        {
+          "name": "email",
+          "ordinal": 1,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "password",
+          "ordinal": 2,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "code",
+          "ordinal": 3,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "verified",
+          "ordinal": 4,
+          "type_info": "Bool"
+        },
+        {
+          "name": "updated_at",
+          "ordinal": 5,
+          "type_info": "Timestamptz"
+        },
+        {
+          "name": "created_at",
+          "ordinal": 6,
+          "type_info": "Timestamptz"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
         false,
         false,
         false,
@@ -39,11 +107,13 @@
       "parameters": {
         "Left": [
           "Varchar",
-          "Varchar"
+          "Varchar",
+          "Varchar",
+          "Bool"
         ]
       }
     },
-    "query": "\n            INSERT INTO users (email, password)\n            VALUES ($1, $2)\n            RETURNING *\n            "
+    "query": "\n            INSERT INTO users (email, password, code, verified)\n            VALUES ($1, $2, $3, $4)\n            RETURNING *\n            "
   },
   "843923b9a0257cf80f1dff554e7dc8fdfc05f489328e8376513124dfb42996e3": {
     "describe": {
@@ -64,17 +134,29 @@
           "type_info": "Varchar"
         },
         {
-          "name": "updated_at",
+          "name": "code",
           "ordinal": 3,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "verified",
+          "ordinal": 4,
+          "type_info": "Bool"
+        },
+        {
+          "name": "updated_at",
+          "ordinal": 5,
           "type_info": "Timestamptz"
         },
         {
           "name": "created_at",
-          "ordinal": 4,
+          "ordinal": 6,
           "type_info": "Timestamptz"
         }
       ],
       "nullable": [
+        false,
+        false,
         false,
         false,
         false,
@@ -108,17 +190,29 @@
           "type_info": "Varchar"
         },
         {
-          "name": "updated_at",
+          "name": "code",
           "ordinal": 3,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "verified",
+          "ordinal": 4,
+          "type_info": "Bool"
+        },
+        {
+          "name": "updated_at",
+          "ordinal": 5,
           "type_info": "Timestamptz"
         },
         {
           "name": "created_at",
-          "ordinal": 4,
+          "ordinal": 6,
           "type_info": "Timestamptz"
         }
       ],
       "nullable": [
+        false,
+        false,
         false,
         false,
         false,

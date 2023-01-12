@@ -14,6 +14,8 @@ use serde::{Deserialize, Serialize};
 use sqlx::{query_as, Pool, Postgres};
 use std::env;
 use std::ops::Add;
+use rand::distributions::Alphanumeric;
+use rand::{Rng, thread_rng};
 use uuid::Uuid;
 
 #[derive(Serialize, Deserialize)]
@@ -22,6 +24,9 @@ pub struct User {
     pub email: String,
     #[serde(skip)]
     pub password: String,
+    pub verified: bool,
+    #[serde(skip)]
+    pub code: String,
     #[serde(rename = "updatedAt")]
     pub updated_at: DateTime<Utc>,
     #[serde(rename = "createdAt")]
@@ -48,6 +53,7 @@ impl User {
         db: &Pool<Postgres>,
         email: String,
         password: String,
+        code: String
     ) -> Result<Self, UserError> {
         let hashed_password = hash(&password, DEFAULT_COST).unwrap();
         let existing_user = User::from_email(db, email.clone()).await;
@@ -60,19 +66,35 @@ impl User {
         let user_result = query_as!(
             User,
             r"
-            INSERT INTO users (email, password)
-            VALUES ($1, $2)
+            INSERT INTO users (email, password, code, verified)
+            VALUES ($1, $2, $3, $4)
             RETURNING *
             ",
             email,
-            hashed_password
+            hashed_password,
+            code,
+            false
         )
         .fetch_one(db)
         .await;
 
         match user_result {
             Ok(u) => Ok(u),
-            Err(_) => Err(UserError::DbError),
+            Err(e) => {
+                println!("{:?}", e);
+                Err(UserError::DbError)
+            },
+        }
+    }
+
+    pub async fn verify(self, db: &Pool<Postgres>) -> Result<Self, UserError> {
+        let user_result = query_as!(User, "UPDATE users SET verified = true WHERE id = $1 RETURNING *", self.id)
+            .fetch_one(db)
+            .await;
+
+        match user_result {
+            Ok(r) => Ok(r),
+            Err(_) => Err(UserError::NotFound),
         }
     }
 

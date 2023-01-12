@@ -6,6 +6,7 @@ use std::sync::Arc;
 mod login;
 mod me;
 mod signup;
+mod verify;
 
 pub fn create_auth_routes(state: Arc<AppState>) -> Router<AppState> {
     Router::with_state_arc(state)
@@ -13,4 +14,5 @@ pub fn create_auth_routes(state: Arc<AppState>) -> Router<AppState> {
         .route("/login", post(login::login_handler))
         .route("/signup", post(signup::signup_handler))
         .route("/me", get(me::me_handler))
+        .route("/verify", post(verify::verify_handler))
 }

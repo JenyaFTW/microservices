@@ -8,7 +8,10 @@ description: "Microservices Labs"
 dependencies:
   - name: postgresql
     version: 10.16.2
-    repository: https://charts.bitnami.com/bitnami
+    repository: file://charts/postgresql
   - name: common
     version: 0.1.0
     repository: file://charts/common
+  - name: rabbitmq
+    version: 11.4.0
+    repository: file://charts/rabbitmq
